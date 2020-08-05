@@ -12,9 +12,7 @@ class ProductController
 {
     public function index(Request $request)
     {
-        $products = \Cache::remember('products', 60 * 30, function () use ($request) {
-            return Product::all();
-        });
+        $products = Product::all();
 
         if ($s = $request->input('s')) {
             $products = $products->filter(function (Product $product) use ($s) {

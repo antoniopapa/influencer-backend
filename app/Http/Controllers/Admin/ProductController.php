@@ -35,7 +35,7 @@ class ProductController
 
         $product = Product::create($request->only('title', 'description', 'image', 'price'));
 
-        event(new ProductUpdatedEvent());
+//        event(new ProductUpdatedEvent());
 
         return response($product, Response::HTTP_CREATED);
     }
@@ -48,7 +48,7 @@ class ProductController
 
         $product->update($request->only('title', 'description', 'image', 'price'));
 
-        event(new ProductUpdatedEvent());
+//        event(new ProductUpdatedEvent());
 
         return response($product, Response::HTTP_ACCEPTED);
     }

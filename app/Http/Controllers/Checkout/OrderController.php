@@ -90,7 +90,7 @@ class OrderController
         $order->complete = 1;
         $order->save();
 
-        event(new OrderCompletedEvent($order));
+//        event(new OrderCompletedEvent($order));
 
         return response([
             'message' => 'success',
