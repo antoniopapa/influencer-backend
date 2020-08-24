@@ -18,18 +18,26 @@ class UserSeeder extends Seeder
             'first_name' => 'Admin',
             'last_name' => 'Admin',
             'email' => 'admin@admin.com',
-        ]);
+            'is_influencer' => 0
+        ])->each(function (User $user) {
+            \App\UserRole::create([
+                'user_id' => $user->id,
+                'role_id' => 1,
+            ]);
+        });
 
         factory(User::class)->create([
             'first_name' => 'Editor',
             'last_name' => 'Editor',
-            'email' => 'editor@editor.com'
+            'email' => 'editor@editor.com',
+            'is_influencer' => 0
         ]);
 
         factory(User::class)->create([
             'first_name' => 'Viewer',
             'last_name' => 'Viewer',
-            'email' => 'viewer@viewer.com'
+            'email' => 'viewer@viewer.com',
+            'is_influencer' => 0
         ]);
     }
 }
