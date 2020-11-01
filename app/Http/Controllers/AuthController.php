@@ -28,14 +28,25 @@ class AuthController
 
             $token = $user->createToken($scope, [$scope])->accessToken;
 
-            return [
+            $cookie = \cookie('jwt', $token, 3600);
+
+            return \response([
                 'token' => $token,
-            ];
+            ])->withCookie($cookie);
         }
 
         return response([
             'error' => 'Invalid Credentials!',
         ], Response::HTTP_UNAUTHORIZED);
+    }
+
+    public function logout()
+    {
+        $cookie = \Cookie::forget('jwt');
+
+        return \response([
+            'message' => 'success'
+        ])->withCookie($cookie);
     }
 
     public function register(RegisterRequest $request)
